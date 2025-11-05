@@ -54,5 +54,5 @@ jobs:
 
     - name: Aplicar Deployment no EKS
       run: |
-        kubectl set image deployment/fcg-ms-payments fcg-ms-payments=${{ secrets.ECR_REPOSITORY_PAYMENTS }}:latest --namespace default
+        kubectl set image deployment/fcg-ms-payments fcg-ms-payments=${{ secrets.ECR_REPOSITORY  }}:latest --namespace default
         kubectl rollout status deployment/fcg-ms-payments --namespace default
