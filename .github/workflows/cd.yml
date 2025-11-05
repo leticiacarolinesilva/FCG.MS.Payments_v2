@@ -37,13 +37,19 @@ jobs:
         docker push ${{ secrets.ECR_REPOSITORY }}:latest
 
     - name: Configurar o kubectl
-      uses: aws-actions/eks-setup-kubectl@v4
+      uses: azure/setup-kubectl@v3
       with:
-        version: '1.30'
+        version: 'latest'
 
     - name: Obter credenciais do cluster EKS
       run: |
         aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
+
+    - name: Debug - Testar conexão EKS
+      run: |
+        echo "Testando conexão com o cluster..."
+        kubectl cluster-info
+        kubectl get nodes   
 
     - name: Criar ou atualizar secrets no Kubernetes
       run: |
