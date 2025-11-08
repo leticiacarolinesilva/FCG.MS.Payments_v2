@@ -67,6 +67,7 @@ jobs:
         kubectl create secret generic fcg-ms-payments-secret \
           --from-literal=Stripe__PublishableKey="${{ secrets.STRIPE_PUBLISHABLE_KEY }}" \
           --from-literal=Stripe__SecretKey="${{ secrets.STRIPE_SECRET_KEY }}" \
+          --from-literal=RabbitMQ__Connection="${{ secrets.STRIPE_SECRET_KEY }}" \
           --dry-run=client -o yaml | kubectl apply -f -
 
     - name: Deploy
