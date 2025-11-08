@@ -1,9 +1,13 @@
 name: CD - Deploy Docker no Amazon ECR
-
 on:
   push:
     branches:
       - master
+      
+permissions:
+  id-token: write  
+  contents: read   
+  
 jobs:
   deploy:
     name: Buildar e enviar imagem para o ECR
@@ -35,7 +39,14 @@ jobs:
     - name: Push no ECR
       run: |
         docker push ${{ secrets.ECR_REPOSITORY }}:latest
-
+        
+    - name: Configurar credenciais AWS via OIDC
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::399668701651:role/GitHubActionsEKSRole
+        aws-region: ${{ secrets.AWS_REGION }}
+        role-session-name: GitHubActionsSession
+        
     - name: Configurar o kubectl
       uses: azure/setup-kubectl@v3
       with:
