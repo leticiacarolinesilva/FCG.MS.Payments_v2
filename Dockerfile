@@ -44,7 +44,7 @@ NEW_RELIC_APP_NAME="fcg-ms-user-payments"
 
 # Set environment variables
 ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS=http://+:8080
 
 # Copy the published app
 COPY --from=publish /app/publish .
