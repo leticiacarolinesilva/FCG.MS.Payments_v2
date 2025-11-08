@@ -69,7 +69,7 @@ jobs:
           --from-literal=Stripe__SecretKey="${{ secrets.STRIPE_SECRET_KEY }}" \
           --dry-run=client -o yaml | kubectl apply -f -
 
-    - name: Aplicar Deployment no EKS
+    - name: Deploy
       run: |
-        kubectl set image deployment/fcg-ms-payments fcg-ms-payments=${{ secrets.ECR_REPOSITORY  }}:latest --namespace default
-        kubectl rollout status deployment/fcg-ms-payments --namespace default 
+        kubectl apply -f k8s/payments-deployment.yaml
+        kubectl rollout status deployment/fcg-ms-payments --namespace default
