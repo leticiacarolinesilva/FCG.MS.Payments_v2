@@ -32,6 +32,11 @@ spec:
                 secretKeyRef:
                   name: fcg-ms-payments-secret
                   key: Stripe__SecretKey
+            - name: Stripe__SecretKey
+              valueFrom:
+                secretKeyRef:
+                  name: fcg-ms-payments-secret
+                  key: RabbitMQ__Connection
           readinessProbe:
             httpGet:
               path: /swagger/index.html
