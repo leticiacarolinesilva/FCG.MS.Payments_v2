@@ -71,5 +71,5 @@ jobs:
 
     - name: Deploy
       run: |
-        kubectl apply -f k8s/payments-deployment.yaml
+        kubectl apply -f k8s/deployment-payments.yaml
         kubectl rollout status deployment/fcg-ms-payments --namespace default
