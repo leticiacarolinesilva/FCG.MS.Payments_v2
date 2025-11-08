@@ -32,7 +32,7 @@ spec:
                 secretKeyRef:
                   name: fcg-ms-payments-secret
                   key: Stripe__SecretKey
-            - name: Stripe__SecretKey
+            - name: RabbitMQ__Connection
               valueFrom:
                 secretKeyRef:
                   name: fcg-ms-payments-secret
